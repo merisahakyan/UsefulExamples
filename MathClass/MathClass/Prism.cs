@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace MathClass
 {
-    class Prism:DimensionalForms
+    class Prism : DimensionalForms
     {
         private int BaseEdgeCount { get; set; }
         private double Alpha { get; set; }
+
+        public Prism(double v, double h, double ba, double lsa, int bec, double a) : base(v, h, ba, lsa)
+        {
+            BaseEdgeCount = bec;
+            Alpha = a;
+        }
     }
 }

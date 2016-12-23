@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace MathClass
 {
-    class Pyramid:DimensionalForms
+    class Pyramid : DimensionalForms
     {
         private int BaseEdgeCount { get; set; }
-        private double Enge { get; set; }
+        private double Edge { get; set; }
+
+        public Pyramid(double v, double h, double ba, double lsa, int bec, double e) : base(v, h, ba, lsa)
+        {
+            BaseEdgeCount = bec;
+            Edge = e;
+        }
 
 
     }
