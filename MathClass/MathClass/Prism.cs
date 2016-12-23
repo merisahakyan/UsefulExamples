@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathClass
 {
-    class Prism
+    class Prism:DimensionalForms
     {
         public int BaseEdgeCount { get; set; }
         public double Alpha { get; set; }

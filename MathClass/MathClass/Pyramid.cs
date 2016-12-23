@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathClass
 {
-    class Pyramid
+    class Pyramid:DimensionalForms
     {
         public int BaseEdgeCount { get; set; }
         public double Enge { get; set; }
