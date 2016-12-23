@@ -8,9 +8,9 @@ namespace MathClass
 {
     class DimensionalForms
     {
-        public double Volume { get; set; }
-        public double Hight { get; set; }
-        public double BaseArea { get; set; }
-        public double LateralSurfaceArea { get; set; }
+        private double Volume { get; set; }
+        private double Hight { get; set; }
+        private double BaseArea { get; set; }
+        private double LateralSurfaceArea { get; set; }
     }
 }

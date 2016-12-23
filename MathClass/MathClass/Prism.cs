@@ -8,7 +8,7 @@ namespace MathClass
 {
     class Prism:DimensionalForms
     {
-        public int BaseEdgeCount { get; set; }
-        public double Alpha { get; set; }
+        private int BaseEdgeCount { get; set; }
+        private double Alpha { get; set; }
     }
 }

@@ -8,8 +8,8 @@ namespace MathClass
 {
     class Cube:DimensionalForms
     {
-        public double Length { get; set; }
-        public double Width { get; set; }
+        private double Length { get; set; }
+        private double Width { get; set; }
 
     }
 }

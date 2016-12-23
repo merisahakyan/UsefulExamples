@@ -8,8 +8,8 @@ namespace MathClass
 {
     class Pyramid:DimensionalForms
     {
-        public int BaseEdgeCount { get; set; }
-        public double Enge { get; set; }
+        private int BaseEdgeCount { get; set; }
+        private double Enge { get; set; }
 
 
     }
