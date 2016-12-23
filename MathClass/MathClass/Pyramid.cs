@@ -13,6 +13,7 @@ namespace MathClass
 
         public Pyramid(double v, double h, double ba, double lsa, int bec, double e) : base(v, h, ba, lsa)
         {
+
             BaseEdgeCount = bec;
             Edge = e;
         }
