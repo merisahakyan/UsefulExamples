@@ -29,6 +29,7 @@ namespace Test
                 Console.WriteLine(obj[i]);
             }
 
+            Console.WriteLine(obj[10]);
             //This is uncorrect code,because our indexer is readonly, it does'n consist set accesor
             //obj[0] = "not zero";
             
