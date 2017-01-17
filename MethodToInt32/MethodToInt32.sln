@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodToInt32", "ConsoleApplication1\MethodToInt32.csproj", "{1A057D71-1255-42F7-938C-8893DFF0B96E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodToInt32", "MethodToInt32\MethodToInt32.csproj", "{898BD6EB-761B-492E-BBC6-2D43669AB828}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A057D71-1255-42F7-938C-8893DFF0B96E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A057D71-1255-42F7-938C-8893DFF0B96E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A057D71-1255-42F7-938C-8893DFF0B96E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A057D71-1255-42F7-938C-8893DFF0B96E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{898BD6EB-761B-492E-BBC6-2D43669AB828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{898BD6EB-761B-492E-BBC6-2D43669AB828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{898BD6EB-761B-492E-BBC6-2D43669AB828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{898BD6EB-761B-492E-BBC6-2D43669AB828}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
