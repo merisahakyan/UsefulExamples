@@ -9,7 +9,8 @@ namespace MathClass
     class Program
     {
         static void Main(string[] args)
-        { 
+        {
+            Cube cube = new Cube(1,2,3,5,6,3);
 
         }
     }
