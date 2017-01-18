@@ -5,15 +5,15 @@ and **TxtWriter(_string path_)**.
 static void Main(string[] args)
 {
      string path1 = @"C:\New Folder\text.txt";
-     string path2 = @"C:\New Folder\cdhgcydgyhgdhghhpppppppppppppppppppppppppppppppppppppppppppphhhhhhhhh</br>
-     hhhhhhhhhhhhllllppppppppppppppppppppppppppppppppplllllllllllllllllllllllllllhhhhhhhhkkklllllllllllll</br>
+     string path2 = @"C:\New Folder\cdhgcydgyhgdhghhpppppppppppppppppppppppppppppppppppppppppppphhhhhhhhh
+     hhhhhhhhhhhhllllppppppppppppppppppppppppppppppppplllllllllllllllllllllllllllhhhhhhhhkkklllllllllllll
      llllkkkkkkkkkkkkkkkkkkkkhhhggggyyyyyyyyyyyyyyyyyyyytttttttttttttttttttttttttt.txt"; 
      
      //This code can bring to DirectoryNotFoundException if there are no direction C:\New Folder\text.txt 
      //and FileNotFoundException if the file doesn't exist.
      HandlingInFiles.TxtReader(path1);
      
-     //This code brings to PathTooLongException because pats length is too long.
+     //This code brings to PathTooLongException because pat2's length is too long.
      HandlingInFiles.TxtReader(path2);
      
      //With this code you can write something in file.It can also bring to exceptions
