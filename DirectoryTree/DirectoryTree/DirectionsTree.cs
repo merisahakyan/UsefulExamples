@@ -12,7 +12,7 @@ namespace DirectoryTree
     {
         static ArrayList directories = new ArrayList();
         static string newpath = String.Empty;
-        
+
         public static void GetTree(string path)
         {
 
@@ -28,28 +28,23 @@ namespace DirectoryTree
                 foreach (string f in Directory.GetFiles(path))
                     directories.Add(s + "   " + f);
             }
-            
-                foreach (string d in Directory.GetDirectories(path))
+            foreach (string d in Directory.GetDirectories(path))
+            {
+                newpath = d;
+                newpath = "   " + newpath;
+                directories.Add(newpath);
+                int i = 0; string s = "";
+                while (newpath[i] == ' ')
                 {
-
-                    newpath = d;
-                    newpath = "   " + newpath;
-                    directories.Add(newpath);
-                    int i = 0; string s = "";
-                    while (newpath[i] == ' ')
-                    {
-                        s = s + " ";
-                        i++;
-                    }
-                    foreach (string f in Directory.GetFiles(d))
-                    {
-                        directories.Add(s + "   " + f);
-                    }
-                    GetTree(newpath);
-
+                    s = s + " ";
+                    i++;
                 }
-            
-
+                foreach (string f in Directory.GetFiles(d))
+                {
+                    directories.Add(s + "   " + f);
+                }
+                GetTree(newpath);
+            }
         }
 
         public static void Print()
