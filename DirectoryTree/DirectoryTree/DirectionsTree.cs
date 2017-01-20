@@ -28,8 +28,7 @@ namespace DirectoryTree
                 foreach (string f in Directory.GetFiles(path))
                     directories.Add(s + "   " + f);
             }
-            try
-            {
+            
                 foreach (string d in Directory.GetDirectories(path))
                 {
 
@@ -49,11 +48,7 @@ namespace DirectoryTree
                     GetTree(newpath);
 
                 }
-            }
-            catch (Exception ex)
-            {
-                directories.Add(ex.Message);
-            }
+            
 
         }
 
