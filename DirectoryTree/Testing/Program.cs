@@ -11,7 +11,8 @@ namespace Testing
     {
         static void Main(string[] args)
         {
-            DirectionsTree.GetTree(@"D:\");
+            string str = Console.ReadLine();
+            DirectionsTree.GetTree(@str);
             DirectionsTree.Print();
         }
     }
