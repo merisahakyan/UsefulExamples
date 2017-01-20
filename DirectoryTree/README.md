@@ -7,12 +7,13 @@ namespace Testing
     class Program
     {
         static void Main(string[] args)
-        {
-            DirectionsTree.GetTree(@"D:\");
+        {   
+            string str=Console.ReadLine();
+            DirectionsTree.GetTree(@str);
             DirectionsTree.Print();
         }
     }
 }
 ```
 ##This is my D:\ folders structure
-![](https://github.com/marysahakyan/UsefulExamples/blob/master/DirectoryTree/folderstree.gif)
+![](https://github.com/marysahakyan/UsefulExamples/blob/master/DirectoryTree/Tree.gif.gif)
