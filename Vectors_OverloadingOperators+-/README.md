@@ -11,7 +11,7 @@ head-to-tail method .</br>
 There is class **Vectror** with _float_ fields _startx,starty,endx,endy_(vector's start and end coordinates). </br>
 The class has 2 constructors: first is default which initializes fields with 0,0,0,0 values, second constructor </br>
 has 4 _float_ arguments.  </br>
-**The overloaded operators + and -**
+**The overloaded operators + and -** </br>
 If the vectors aren't after one another, the method transvers second vector to te end of the first.
 ```cs
 public static Vector operator +(Vector v1, Vector v2)
