@@ -7,9 +7,10 @@ head-to-tail method .</br>
 ###Vector Addition:
 ![](https://github.com/marysahakyan/UsefulExamples/blob/master/Vectors_OverloadingOperators%2B-/addition.gif)
 ###Vector Subtraction:
-![](https://github.com/marysahakyan/UsefulExamples/blob/master/Vectors_OverloadingOperators%2B-/subtraction.gif)
-There are class **Vectror** with _float_ fields _startx,starty,endx,endy_. The class has 2 constructors: first is default</br>
-which initializes fields with 0,0,0,0 values, second constructor has 4 _float_ arguments.  </br>
+![](https://github.com/marysahakyan/UsefulExamples/blob/master/Vectors_OverloadingOperators%2B-/subtraction.gif)</br>
+There is class **Vectror** with _float_ fields _startx,starty,endx,endy_(vector's start and end coordinates). </br>
+The class has 2 constructors: first is default which initializes fields with 0,0,0,0 values, second constructor </br>
+has 4 _float_ arguments.  </br>
 **The overloaded operators + and -**
 If the vectors aren't after one another, the method transvers second vector to te end of the first.
 ```cs
