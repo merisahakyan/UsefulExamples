@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ImplementingIterates\ImplementingIterates.csproj">
+    <ProjectReference Include="..\ImplementingIterates\ImplementingIterators.csproj">
       <Project>{97228a20-a142-426c-a6f5-9c81c533038b}</Project>
-      <Name>ImplementingIterates</Name>
+      <Name>ImplementingIterators</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

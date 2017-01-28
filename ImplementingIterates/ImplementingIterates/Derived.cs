@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImplementingIterates
+namespace ImplementingIterators
 {
     public class Derived<T> : IEnumerable, IEnumerator
     {
