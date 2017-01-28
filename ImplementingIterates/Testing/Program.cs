@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImplementingIterates;
+using System.Collections;
 
 namespace Testing
 {
@@ -30,6 +31,22 @@ namespace Testing
                     Console.WriteLine(dint.Current);
                 else
                     dint.Reset();
+            Console.WriteLine("Iterates-------------");
+            var en = GetIntegers();
+
+            foreach (var item in en)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        public static IEnumerable GetIntegers()
+        {
+            yield return 1;
+            yield return 2;
+            yield return 3;
+            yield return 4;
+            yield return 5;
+            
         }
     }
 }
