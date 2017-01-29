@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImplementingIterators", "ImplementingIterates\ImplementingIterators.csproj", "{97228A20-A142-426C-A6F5-9C81C533038B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{922DF546-6B9F-4FE7-9668-E030DAAC0964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImplementingIterators1", "ImplementingIterators1\ImplementingIterators1.csproj", "{681EDD4E-8592-4295-A5E6-0AB576FADEFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{97228A20-A142-426C-A6F5-9C81C533038B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97228A20-A142-426C-A6F5-9C81C533038B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97228A20-A142-426C-A6F5-9C81C533038B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97228A20-A142-426C-A6F5-9C81C533038B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{922DF546-6B9F-4FE7-9668-E030DAAC0964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{922DF546-6B9F-4FE7-9668-E030DAAC0964}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{922DF546-6B9F-4FE7-9668-E030DAAC0964}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{922DF546-6B9F-4FE7-9668-E030DAAC0964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{681EDD4E-8592-4295-A5E6-0AB576FADEFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{681EDD4E-8592-4295-A5E6-0AB576FADEFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{681EDD4E-8592-4295-A5E6-0AB576FADEFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{681EDD4E-8592-4295-A5E6-0AB576FADEFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
