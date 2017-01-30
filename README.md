@@ -1,4 +1,4 @@
-# Useful examples for understanding OOP in c#
+# Useful examples for understanding OOP in **c#**
 * [DirectoryTree for getting folders and files from given directory](https://github.com/marysahakyan/UsefulExamples/tree/master/DirectoryTree)
 * [Geometric vectors addition and subtraction. Operators overloading](https://github.com/marysahakyan/UsefulExamples/tree/master/Vectors_OverloadingOperators%2B-)
 * [File Class, Exception Handling](https://github.com/marysahakyan/UsefulExamples/tree/master/ExceptionHandling)
