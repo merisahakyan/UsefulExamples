@@ -2,8 +2,12 @@
 * [DirectoryTree for getting folders and files from given directory](https://github.com/marysahakyan/UsefulExamples/tree/master/DirectoryTree)
 * [Geometric vectors addition and subtraction. Operators overloading](https://github.com/marysahakyan/UsefulExamples/tree/master/Vectors_OverloadingOperators%2B-)
 * [File Class, Exception Handling](https://github.com/marysahakyan/UsefulExamples/tree/master/ExceptionHandling)
+* [CrazyButton](https://github.com/merisahakyan/UsefulExamples/tree/master/CrazyButton)
+* [Events and Delegates](https://github.com/merisahakyan/UsefulExamples/tree/master/EventsAndDelegates)
+* [New MyLINQ exstensions like LINQ](https://github.com/merisahakyan/UsefulExamples/tree/master/HandMadeLINQ)
+* [Iterators,IEnumerable and IEnumerator interfaces](https://github.com/merisahakyan/UsefulExamples/tree/master/ImplementingIterators)
 * [IndexersDemo with class Dictionary<>](https://github.com/marysahakyan/UsefulExamples/tree/master/IndexersDemo)
-* [Method ToInt32(byte b1,byte b2,byte b3,byte b4)](https://github.com/marysahakyan/UsefulExamples/tree/master/MethodToInt32)
+
  </br>
 
 ![Bruce](https://github.com/marysahakyan/UsefulExamples/blob/master/bruce.gif)
