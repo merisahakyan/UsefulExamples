@@ -50,6 +50,7 @@ namespace AsyncronousProgramming
     {
         static void Main(string[] args)
         {
+            //4 threads working at the same time
             MyFirstAsync ob = new MyFirstAsync();
             ob.Print1();
             ob.Print2();
