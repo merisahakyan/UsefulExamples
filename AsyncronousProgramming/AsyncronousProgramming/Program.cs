@@ -9,41 +9,42 @@ namespace AsyncronousProgramming
 {
     class MyFirstAsync
     {
-        public async void Print1()
+        public async Task Print1()
         {
+            throw new OutOfMemoryException();
             await Task.Run(() =>
             {
-                for (int i = 0; i < 10000; i++)
+                for (int i = 0; i < 100; i++)
                 {
                     Thread.Sleep(8);
                     Console.WriteLine("aaaaaaaaaaa");
                 }
             });
-            
+
         }
-        public async void Print2()
+        public async Task Print2()
         {
-           await Task.Run(() =>
-            {
-                for (int i = 0; i < 10000; i++)
-                {
-                    //Thread.Sleep(8);
-                    Console.WriteLine("bbb");
-                }
-            });
-            
+            await Task.Run(() =>
+             {
+                 for (int i = 0; i < 100; i++)
+                 {
+                     //Thread.Sleep(8);
+                     Console.WriteLine("bbb");
+                 }
+             });
+
         }
-        public async void Print3()
+        public async Task Print3()
         {
-           await Task.Run(() =>
-            {
-                for (int i = 0; i < 10000; i++)
-                {
-                    //Thread.Sleep(8);
-                    Console.WriteLine("ccccccc");
-                }
-            });
-            
+            await Task.Run(() =>
+             {
+                 for (int i = 0; i < 100; i++)
+                 {
+                     //Thread.Sleep(8);
+                     Console.WriteLine("ccccccc");
+                 }
+             });
+
         }
     }
     class Program
@@ -52,14 +53,24 @@ namespace AsyncronousProgramming
         {
             //4 threads working at the same time
             MyFirstAsync ob = new MyFirstAsync();
-            ob.Print1();
-            ob.Print2();
-            ob.Print3();
-            for (int i = 0; i < 10000; i++)
+            var task1 = ob.Print1();
+            var task2 = ob.Print2();
+            var task3 = ob.Print3();
+            task1.ContinueWith(t =>
             {
-                Thread.Sleep(8);
-                Console.WriteLine("out");
-            }
+                if (t.IsFaulted)
+                    Console.WriteLine("task is faulted!!~~~~~~~~~~~~~~~");
+                else
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Thread.Sleep(8);
+                        Console.WriteLine("out");
+                    }
+            });
+            Console.WriteLine("before WhenAll");
+            Task task=Task.WhenAll(task1, task2, task3);
+            Console.WriteLine("After WhenAll");
+
             Console.ReadLine();
         }
     }
