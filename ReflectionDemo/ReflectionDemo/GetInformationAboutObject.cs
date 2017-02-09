@@ -11,8 +11,7 @@ namespace ReflectionDemo
     {
         public void GetMethods(object obj)
         {
-            Console.WriteLine("Methods-----------------------");
-            Console.WriteLine();
+            Console.WriteLine("*****Methods*****");
             Type t = obj.GetType();
             MethodInfo[] mi = t.GetMethods();
             foreach (MethodInfo m in mi)
@@ -22,8 +21,7 @@ namespace ReflectionDemo
 
         public void GetMemberInfo(object obj)
         {
-            Console.WriteLine("Members-----------------------");
-            Console.WriteLine();
+            Console.WriteLine("*****Members*****");
             Type t = obj.GetType();
             MemberInfo[] mi = t.GetMembers();
             foreach (var item in mi)
@@ -32,8 +30,7 @@ namespace ReflectionDemo
         }
         public void GetPropertyInfo(object obj)
         {
-            Console.WriteLine("Properties-----------------------");
-            Console.WriteLine();
+            Console.WriteLine("*****Properties*****");
             Type t = obj.GetType();
             PropertyInfo[] mi = t.GetProperties();
             foreach (var item in mi)
@@ -42,8 +39,7 @@ namespace ReflectionDemo
         }
         public void GetFieldInfo(object obj)
         {
-            Console.WriteLine("Fields-----------------------");
-            Console.WriteLine();
+            Console.WriteLine("*****Fields*****");
             Type t = obj.GetType();
             FieldInfo[] mi = t.GetFields();
             foreach (var item in mi)
@@ -52,14 +48,24 @@ namespace ReflectionDemo
         }
         public void GetAssembly(object obj)
         {
-            Console.WriteLine("Assembly-----------------------");
-            Console.WriteLine();
+            Console.WriteLine("*****AssemblyInfo*****");
             Type t = obj.GetType();
             Assembly mi = t.Assembly;
             Console.WriteLine(mi);
             Console.WriteLine();
         }
 
+        public void GetInterfaceInfo(object obj)
+        {
+            Console.WriteLine("*****Interfaces*****");
+            Type t = obj.GetType();
+            var intfaces = from b in t.GetInterfaces() select b;
+            foreach (var item in intfaces)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+        }
 
     }
 }

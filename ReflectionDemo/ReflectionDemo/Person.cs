@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReflectionDemo
 {
-    public class Person
+    public class Person:IEnumerable
     {
         public int PersonID;
         public string Name { get; set; }
@@ -41,6 +42,11 @@ namespace ReflectionDemo
         public int BirthMonth()
         {
             return this.BirthDate.Month;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

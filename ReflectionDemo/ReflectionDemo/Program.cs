@@ -19,7 +19,15 @@ namespace ReflectionDemo
             get.GetPropertyInfo(person);
             get.GetFieldInfo(person);
             get.GetAssembly(person);
-            
+            get.GetInterfaceInfo(person);
+            //*******
+            Type t = person.GetType();
+            Console.WriteLine($"Is type abstract?      {t.IsAbstract}");
+            Console.WriteLine($"Is type sealed?        {t.IsSealed}");
+            Console.WriteLine($"Is type generic?       {t.IsGenericTypeDefinition}");
+            Console.WriteLine($"Is type a class type?  {t.IsClass}");
+
+
         }
     }
 }
