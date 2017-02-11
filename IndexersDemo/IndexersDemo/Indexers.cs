@@ -18,7 +18,7 @@ namespace IndexersDemo
         {
             get
             {
-                if (index >= 0 && index <= dic.Count())
+                if (dic.Keys.Contains(index))
                     return dic[index];
                 else
                     throw new KeyNotFoundException("Index out of range");

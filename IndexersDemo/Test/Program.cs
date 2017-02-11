@@ -29,7 +29,14 @@ namespace Test
                 Console.WriteLine(obj[i]);
             }
 
-            Console.WriteLine(obj[10]);
+            try
+            {
+                Console.WriteLine(obj[10]);
+            }
+            catch(KeyNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             //This is uncorrect code,because our indexer is readonly, it does'n consist set accesor
             //obj[0] = "not zero";
             
