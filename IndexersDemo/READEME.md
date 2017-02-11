@@ -1,7 +1,8 @@
 
 ##Indexers
-Here we have class **Indexers** which contains Dictionary<int, string> **dic**  private field.If we want to have</br>
-a readonly dictionary: indexers can help us at this situation.Lets see how we can declare indexer insight the class.
+Here we have class **Indexers** which contains ```cs Dictionary<int, string>``` **dic**  private field.If we want to have</br>
+a readonly dictionary, indexers can help us in this situation. </br>
+Lets see how we can declare indexer insight the class.
 ```cs
 public string this[int index]
 {
