@@ -21,7 +21,7 @@ namespace IndexersDemo
                 if (dic.Keys.Contains(index))
                     return dic[index];
                 else
-                    throw new KeyNotFoundException("Index out of range");
+                    throw new KeyNotFoundException("Key not found");
             }
         }
 
