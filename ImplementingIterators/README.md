@@ -7,8 +7,8 @@ public class Derived<T> : IEnumerable, IEnumerator
 //some code
 }
 ```
-Now lets implement mmethods of interfaces.There are private members _List<T> list = new List<T>() , int index _.</br>
-Construcctor of class Derived sets value of **indes** equal to -1.
+Now lets implement methods of interfaces.There are private members List<T> list = new List<T>() , int index.</br>
+Construcctor of class Derived sets value of **index** equal to -1.
 ```cs
 public Derived(List<T> list)
 {
