@@ -10,5 +10,7 @@
 * [Asyncronous Programming,async await keywords,TPL](https://github.com/merisahakyan/UsefulExamples/tree/master/AsyncronousProgramming)
 * [System.Reflection class library](https://github.com/merisahakyan/UsefulExamples/tree/master/ReflectionDemo)
  </br>
+ * [Regular Expressions](https://github.com/merisahakyan/UsefulExamples/tree/master/RegularEx)
+ </br>
 
 ![Bruce](https://github.com/marysahakyan/UsefulExamples/blob/master/bruce.gif)
