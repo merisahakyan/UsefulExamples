@@ -9,6 +9,7 @@
 * [IndexersDemo with class Dictionary<>](https://github.com/marysahakyan/UsefulExamples/tree/master/IndexersDemo)
 * [Asyncronous Programming,async await keywords,TPL](https://github.com/merisahakyan/UsefulExamples/tree/master/AsyncronousProgramming)
 * [System.Reflection class library](https://github.com/merisahakyan/UsefulExamples/tree/master/ReflectionDemo)
+* [Regular Expressions](https://github.com/merisahakyan/UsefulExamples/tree/master/RegularEx)
  </br>
 
 ![Bruce](https://github.com/marysahakyan/UsefulExamples/blob/master/bruce.gif)
