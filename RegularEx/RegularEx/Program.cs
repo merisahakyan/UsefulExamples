@@ -35,10 +35,23 @@ namespace RegularEx
             while (!rg.IsMatch(str));
             Console.WriteLine("Great!");
         }
+        static void OnlyLetters()
+        {
+            string str;
+            Regex rg = new Regex("[a-z A-Z]",RegexOptions.Compiled);
+            do
+            {
+                Console.WriteLine("Your input");
+                str = Console.ReadLine();
+            }
+            while (!rg.IsMatch(str));
+            Console.WriteLine("Great!");
+        }
         static void Main(string[] args)
         {
             OnlyDigits();
             DigitsAndSpaces();
+            OnlyLetters();
         }
     }
 }
