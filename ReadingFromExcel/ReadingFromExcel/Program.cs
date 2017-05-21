@@ -17,18 +17,25 @@ namespace ReadingFromExcel
             Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
             Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
 
-            for (int i = 1; i <= 2; i++)
+            for (int i = 1; i <= xlWorksheet.Rows.Count; i++)
             {
-                for (int j = 1; j <= 5; j++)
+                if (xlRange.Cells[i, 1].Value2 != null && xlRange.Cells[i, 1] != null)
                 {
-                    //new line
-                    if (j == 1)
-                        Console.Write("\r\n");
+                    for (int j = 1; j <= xlWorksheet.Columns.Count; j++)
+                    {
+                        //new line
+                        if (j == 1)
+                            Console.Write("\r\n");
 
-                    //write the value to the console
-                    if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
-                        Console.Write(xlRange.Cells[i, j].Value2.ToString() + "\t");
+                        //write the value to the console
+                        if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
+                            Console.Write(xlRange.Cells[i, j].Value2.ToString() + "\t");
+                        else
+                            break;
+                    }
                 }
+                else
+                    break;
             }
         }
     }
