@@ -28,6 +28,10 @@ namespace SendingMails
 
 
             //route for sending mail
+            config.Routes.MapHttpRoute(
+                name: "SendMail",
+                routeTemplate: "api/SendMail"
+            );
 
         }
     }
