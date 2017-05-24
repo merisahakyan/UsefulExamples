@@ -5,15 +5,56 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using System.IO;
+using OfficeOpenXml;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ReadingFromExcel
 {
     class Program
     {
+        static void ParseToExcel(string path, byte[] bytes)
+        {
+            System.IO.File.WriteAllBytes(path, bytes);
+        }
+        static byte[] GetActiveWorkbook(Microsoft.Office.Interop.Excel.Application app)
+        {
+            string path = Path.GetTempFileName();
+            try
+            {
+                app.ActiveWorkbook.SaveCopyAs(path);
+                return File.ReadAllBytes(path);
+            }
+            finally
+            {
+                if (File.Exists(path))
+                    File.Delete(path);
+            }
+        }
         static void Main(string[] args)
         {
+            Microsoft.Office.Interop.Excel.Application xlApp0 = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook xlWorkbook0 = xlApp0.Workbooks.Open(@"C:\Users\Dell\Desktop\user.xlsx");
+
+            byte[] array = GetActiveWorkbook(xlApp0);
+            
+
+
+
+
+
+
+            string path = Environment.GetFolderPath(
+                         System.Environment.SpecialFolder.DesktopDirectory) + @"\newexceldocument1.xlsx";
+
+            System.IO.File.WriteAllBytes(path, array);
+
+
+
+
+
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\Dell\Desktop\user.xlsx");
+            Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(path);
             Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
             Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
 
