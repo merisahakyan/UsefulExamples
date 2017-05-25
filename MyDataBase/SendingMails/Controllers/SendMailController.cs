@@ -17,7 +17,7 @@ namespace SendingMails.Controllers
         [System.Web.Http.HttpPost]
         public void SendMailTo(string sendto)
         {
-            var client = new SendGridClient("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");
+            var client = new SendGridClient("sendgrid_key");
 
             var myMessage = new SendGridMessage();
             myMessage.AddTo(sendto);
