@@ -14,25 +14,8 @@ namespace ReadingFromExcel
 {
     class Program
     {
-        static void ParseToExcel(string path, byte[] bytes)
-        {
-            System.IO.File.WriteAllBytes(path, bytes);
-        }
-        static byte[] GetActiveWorkbook(Microsoft.Office.Interop.Excel.Application app)
-        {
-            string path = Path.GetTempFileName();
-            try
-            {
-                app.ActiveWorkbook.SaveCopyAs(path);
-                return File.ReadAllBytes(path);
-            }
-            finally
-            {
-                if (File.Exists(path))
-                    File.Delete(path);
-            }
-        }
-        static void Main(string[] args)
+        
+        public static void ReadFromExcel()
         {
             List<Contact> contactslist = new List<Contact>();
             var excel = new ExcelQueryFactory(@"C:\Users\Dell\Desktop\contacts.xlsx");
@@ -56,7 +39,65 @@ namespace ReadingFromExcel
             {
                 Console.WriteLine($"{item.FullName}   {item.DateInserted}");
             }
+        }
 
+        public static void ReadFromCsv()
+        {
+            List<Contact> contactslist = new List<Contact>();
+            var excel = new ExcelQueryFactory(@"C:\Users\Dell\Desktop\users.csv");
+            string csvFile = @"C:\Users\Dell\Desktop\users.csv";
+            string[] lines = File.ReadAllLines(csvFile);
+            
+            string[] columns = lines[0].Split('\\');
+            Dictionary<string, int> d = new Dictionary<string, int>();
+            d.Add("FullName", 0);
+            d.Add("Company", 1);
+            d.Add("Position", 2);
+            d.Add("Country", 3);
+            d.Add("Email", 4);
+            d.Add("DataInserted", 5);
+
+            for(int i=0;i<lines.Length;i++)
+            {
+                Contact contact = new Contact();
+                string[] values = lines[i].Split(Path.DirectorySeparatorChar);
+                for(int j=0;j<values.Length;j++)
+                {
+                    switch(j)
+                    {
+                        case 0:contact.FullName = values[d["FullName"]];
+                            break;
+                        case 1:
+                            contact.CompanyName = values[d["Company"]];
+                            break;
+                        case 2:
+                            contact.Position = values[d["Position"]];
+                            break;
+                        case 3:
+                            contact.Country = values[d["Country"]];
+                            break;
+                        case 4:
+                            contact.Email= values[d["Email"]];
+                            break;
+                        case 5:
+                            contact.DateInserted = Convert.ToDateTime(values[d["DataInserted"]]);
+                            break;
+                    }
+                    contact.GuID = new Guid();
+                }
+                contactslist.Add(contact);
+            }
+
+
+            foreach (var value in contactslist)
+            {
+                Console.WriteLine($"{value.FullName} {value.CompanyName} {value.Position} {value.Country} {value.Email} {value.DateInserted}");
+            }
+        }
+        static void Main(string[] args)
+        {
+
+            ReadFromCsv();
         }
     }
 }
