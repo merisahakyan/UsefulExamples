@@ -58,30 +58,12 @@ namespace SendingEmails
         }
         static void Main(string[] args)
         {
-            SendMail("merisahakyan1@gmail.com", "sub", "hello");
-            //string sendto = "merisahakyan1@gmail.com";
-            //MailMessage mailMsg = new MailMessage();
-            //mailMsg.To.Add(new MailAddress(sendto));
-            //mailMsg.Subject = "subject";
-
-            ////for web.config
-            ////System.Configuration.Configuration config = WebConfigurationManager.
-            ////    OpenWebConfiguration(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
-
-
-            ////MailSettingsSectionGroup settings = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
-
-            //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            //var settings = config.GetSectionGroup("system.net/mailSettings") as MailSettingsSectionGroup;
-
-
-            //mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString("put template's text", null, MediaTypeNames.Text.Plain));
-
-            //SmtpClient smtpClient = new SmtpClient();
-            //smtpClient.Credentials = new NetworkCredential(settings.Smtp.Network.UserName, settings.Smtp.Network.Password);
-
-            //smtpClient.Send(mailMsg);
-            //Console.WriteLine("sended");
+            string[] mails = { "sahakyan_m@bk.ru" ,"msahakyan1997@gmail.com","merisahakyan1@gmail.com"};
+            
+            SendMail(mails[0], "sub", "hello");
+            SendMail(mails[1], "sub", "hello");
+            SendMail(mails[2], "sub", "hello");
+            Console.WriteLine("sended");
         }
     }
 }
