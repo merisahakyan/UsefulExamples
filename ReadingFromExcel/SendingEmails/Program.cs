@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Configuration;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -58,12 +59,22 @@ namespace SendingEmails
         }
         static void Main(string[] args)
         {
-            string[] mails = { "sahakyan_m@bk.ru" ,"msahakyan1997@gmail.com","merisahakyan1@gmail.com"};
-            
-            SendMail(mails[0], "sub", "hello");
-            SendMail(mails[1], "sub", "hello");
-            SendMail(mails[2], "sub", "hello");
-            Console.WriteLine("sended");
+            //string[] mails = { "sahakyan_m@bk.ru" ,"msahakyan1997@gmail.com", "yegoryan.narek@gmail.com", "tigran_vardanyan@yahoo.com" , "vanhakobyan1996@gmail.com" };
+
+            //SendMail(mails[0], "sub", "hello");
+            //SendMail(mails[1], "sub", "hello");
+            //SendMail(mails[2], "sub", "hello");
+            //SendMail(mails[3], "sub", "hello");
+            //SendMail(mails[4], "sub", "hello");
+            //Console.WriteLine("sended");
+
+
+            //Console.WriteLine(Crypting.EncodePassword("crmd_team"));
+            string pass = Crypting.Encrypt("p42Zmx39");
+            Console.WriteLine(pass);
+
+            string p = Crypting.Decrypt(pass);
+            Console.WriteLine(p);
         }
     }
 }
