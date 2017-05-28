@@ -27,8 +27,8 @@ namespace SendingEmails
                 int port = mailSettings.Smtp.Network.Port;
                 string from = mailSettings.Smtp.From;
                 string host = mailSettings.Smtp.Network.Host;
-                string pwd = mailSettings.Smtp.Network.Password;
-                string uid = mailSettings.Smtp.Network.UserName;
+                string pwd = Crypting.Decrypt(mailSettings.Smtp.Network.Password);
+                string uid = Crypting.Decrypt(mailSettings.Smtp.Network.UserName);
 
                 var message = new MailMessage
                 {
@@ -59,22 +59,23 @@ namespace SendingEmails
         }
         static void Main(string[] args)
         {
-            //string[] mails = { "sahakyan_m@bk.ru" ,"msahakyan1997@gmail.com", "yegoryan.narek@gmail.com", "tigran_vardanyan@yahoo.com" , "vanhakobyan1996@gmail.com" };
+            string[] mails = { "sahakyan_m@bk.ru", "msahakyan1997@gmail.com", "yegoryan.narek@gmail.com", "tigran_vardanyan@yahoo.com", "vanhakobyan1996@gmail.com" ,"meri.sahakyan@yahoo.com"};
 
             //SendMail(mails[0], "sub", "hello");
             //SendMail(mails[1], "sub", "hello");
             //SendMail(mails[2], "sub", "hello");
             //SendMail(mails[3], "sub", "hello");
             //SendMail(mails[4], "sub", "hello");
-            //Console.WriteLine("sended");
+            SendMail(mails[5], "sub", "hello");
+            Console.WriteLine("sended");
 
 
             //Console.WriteLine(Crypting.EncodePassword("crmd_team"));
-            string pass = Crypting.Encrypt("p42Zmx39");
-            Console.WriteLine(pass);
+            //string pass = Crypting.Encrypt("p42Zmx39");
+            //Console.WriteLine(pass);
 
-            string p = Crypting.Decrypt(pass);
-            Console.WriteLine(p);
+            //string p = Crypting.Decrypt(pass);
+            //Console.WriteLine(p);
         }
     }
 }
