@@ -1,4 +1,4 @@
-###DirectoryTree Class Library
+### DirectoryTree Class Library
 This class library allows to get any folders structure on your computer.For using add reference on your application like this:</br>
 ```cs
 using DirectoryTree;
@@ -15,5 +15,5 @@ namespace Testing
     }
 }
 ```
-##This is my D:\ folders structure
+## This is my D:\ folders structure
 ![](https://github.com/marysahakyan/UsefulExamples/blob/master/DirectoryTree/Tree.gif.gif)
