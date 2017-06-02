@@ -9,27 +9,33 @@ using System.IO;
 using OfficeOpenXml;
 using System.Runtime.Serialization.Formatters.Binary;
 using LinqToExcel;
+using System.Net;
+using System.Diagnostics;
+using System.Net.Http.Formatting;
+using System.Net.Http;
+using System.Web;
+using System.Web.Http;
 
 namespace ReadingFromExcel
 {
     class Program
     {
-        public static int MimeSampleSize = 256;
+        private static int MimeSampleSize = 256;
 
-        public static string DefaultMimeType = "application/octet-stream";
+        private static string DefaultMimeType = "application/octet-stream";
 
         [DllImport(@"urlmon.dll", CharSet = CharSet.Auto)]
-        private extern static uint FindMimeFromData(
-            uint pBC,
+        private static extern uint FindMimeFromData(
+            uint pBc,
             [MarshalAs(UnmanagedType.LPStr)] string pwzUrl,
-            [MarshalAs(UnmanagedType.LPArray)] byte[] pBuffer,
+            [MarshalAs(UnmanagedType.LPArray)] byte[] bytes,
             uint cbSize,
             [MarshalAs(UnmanagedType.LPStr)] string pwzMimeProposed,
             uint dwMimeFlags,
-            out uint ppwzMimeOut,
+            out uint mimetype,
             uint dwReserverd
         );
-        public static string GetMimeFromBytes(byte[] data)
+        private static string GetMimeFromBytes(byte[] data)
         {
             try
             {
@@ -47,7 +53,7 @@ namespace ReadingFromExcel
                 return DefaultMimeType;
             }
         }
-        static bool Exist(List<string> list, string value, out int index)
+        private static bool Exist(List<string> list, string value, out int index)
         {
             bool t = false;
             index = -1;
@@ -62,77 +68,85 @@ namespace ReadingFromExcel
             }
             return t;
         }
-        public static List<Contact> ReadFromExcel(byte[] bytes)
+
+        private static bool Checking(List<string> allcolumns, ref List<string> columns)
+        {
+            int index = -1, index1 = -1, index2 = -1;
+
+            if (allcolumns.Count < 6
+                || (!Exist(allcolumns, "fullname", out index)
+                && !Exist(allcolumns, "full name", out index))
+                || (!Exist(allcolumns, "company", out index)
+                && !Exist(allcolumns, "company name", out index)
+                && !Exist(allcolumns, "companyname", out index))
+                || !Exist(allcolumns, "position", out index)
+                || !Exist(allcolumns, "country", out index)
+                || (!Exist(allcolumns, "email", out index)
+                && !Exist(allcolumns, "mail", out index))
+                || (!Exist(allcolumns, "data inserted", out index)
+                && !Exist(allcolumns, "datainserted", out index)))
+            {
+                return false;
+            }
+            if (Exist(allcolumns, "fullname", out index)
+                || Exist(allcolumns, "full name", out index1))
+            {
+                if (index1 == -1)
+                    columns.Add(allcolumns[index]);
+                else
+                    columns.Add(allcolumns[index1]);
+            }
+            if (Exist(allcolumns, "company", out index)
+                || Exist(allcolumns, "companyname", out index1)
+                || Exist(allcolumns, "company name", out index2))
+            {
+                if (index1 == -1 && index2 == -1)
+                    columns.Add(allcolumns[index]);
+                else if (index1 == -1)
+                    columns.Add(allcolumns[index2]);
+                else
+                    columns.Add(allcolumns[index1]);
+            }
+            if (Exist(allcolumns, "position", out index))
+                columns.Add(allcolumns[index]);
+            if (Exist(allcolumns, "country", out index))
+                columns.Add(allcolumns[index]);
+            if (Exist(allcolumns, "email", out index)
+                || Exist(allcolumns, "mail", out index1))
+            {
+                if (index1 == -1)
+                    columns.Add(allcolumns[index]);
+                else
+                    columns.Add(allcolumns[index1]);
+            }
+            if (Exist(allcolumns, "data inserted", out index)
+                || Exist(allcolumns, "datainserted", out index1))
+            {
+                if (index1 == -1)
+                    columns.Add(allcolumns[index]);
+                else
+                    columns.Add(allcolumns[index1]);
+            }
+
+            return true;
+
+        }
+        static List<string> columns = new List<string>();
+        private static List<Contact> ReadFromExcel(byte[] bytes)
         {
             List<Contact> contactslist = new List<Contact>();
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "file.xlsx";
             try
             {
-                int index = -1, index1 = -1, index2 = -1;
                 File.WriteAllBytes(path, bytes);
                 ExcelQueryFactory excel = new ExcelQueryFactory(path);
                 var sheets = excel.GetWorksheetNames();
                 var contacts = (from c in excel.Worksheet<Row>(sheets.First())
                                 select c).ToList();
-                List<string> columns = new List<string>();
                 var worksheetcolumns = excel.GetColumnNames(sheets.First()).ToList();
-                if (worksheetcolumns.Count < 6)
-                    return null;
-                if (worksheetcolumns.Count < 6
-                    || (!Exist(worksheetcolumns, "fullname", out index)
-                    && !Exist(worksheetcolumns, "full name", out index))
-                    || (!Exist(worksheetcolumns, "company", out index)
-                    && !Exist(worksheetcolumns, "company name", out index)
-                    && !Exist(worksheetcolumns, "companyname", out index))
-                    || !Exist(worksheetcolumns, "position", out index)
-                    || !Exist(worksheetcolumns, "country", out index)
-                    || (!Exist(worksheetcolumns, "email", out index)
-                    && !Exist(worksheetcolumns, "mail", out index))
-                    || (!Exist(worksheetcolumns, "data inserted", out index)
-                    && !Exist(worksheetcolumns, "datainserted", out index)))
-                {
-                    return null;
-                }
-                if (Exist(worksheetcolumns, "fullname", out index)
-                    || Exist(worksheetcolumns, "full name", out index1))
-                {
-                    if (index1 == -1)
-                        columns.Add(worksheetcolumns[index]);
-                    else
-                        columns.Add(worksheetcolumns[index1]);
-                }
-                if (Exist(worksheetcolumns, "company", out index)
-                    || Exist(worksheetcolumns, "companyname", out index1)
-                    || Exist(worksheetcolumns, "company name", out index2))
-                {
-                    if (index1 == -1 && index2 == -1)
-                        columns.Add(worksheetcolumns[index]);
-                    else if (index1 == -1)
-                        columns.Add(worksheetcolumns[index2]);
-                    else
-                        columns.Add(worksheetcolumns[index1]);
-                }
-                if (Exist(worksheetcolumns, "position", out index))
-                    columns.Add(worksheetcolumns[index]);
-                if (Exist(worksheetcolumns, "country", out index))
-                    columns.Add(worksheetcolumns[index]);
-                if (Exist(worksheetcolumns, "email", out index)
-                    || Exist(worksheetcolumns, "mail", out index1))
-                {
-                    if (index1 == -1)
-                        columns.Add(worksheetcolumns[index]);
-                    else
-                        columns.Add(worksheetcolumns[index1]);
-                }
-                if (Exist(worksheetcolumns, "data inserted", out index)
-                    || Exist(worksheetcolumns, "datainserted", out index1))
-                {
-                    if (index1 == -1)
-                        columns.Add(worksheetcolumns[index]);
-                    else
-                        columns.Add(worksheetcolumns[index1]);
-                }
 
+                if (!Checking(worksheetcolumns, ref columns))
+                    return null;
 
                 foreach (var m in contacts)
                 {
@@ -155,24 +169,60 @@ namespace ReadingFromExcel
             return contactslist;
         }
 
-
-        public static List<Contact> ReadFromCsv(byte[] bytes)
+        private static List<Contact> ReadFromCsv(byte[] bytes)
         {
             List<Contact> contactslist = new List<Contact>();
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "file.csv";
             try
             {
+                int index=-1, index1=-1, index2=-1;
                 File.WriteAllBytes(path, bytes);
                 string[] lines = File.ReadAllLines(path);
-                string[] columns = lines[0].Split(',');
+                string[] allcolumns = lines[0].Split(',');
+                
+                if (!Checking(allcolumns.ToList(), ref columns))
+                    return null;
                 Dictionary<string, int> d = new Dictionary<string, int>();
-                d.Add("FullName", 0);
-                d.Add("Company", 1);
-                d.Add("Position", 2);
-                d.Add("Country", 3);
-                d.Add("Email", 4);
-                d.Add("DataInserted", 5);
-
+                if (Exist(allcolumns.ToList(), "fullname", out index)
+                || Exist(allcolumns.ToList(), "full name", out index1))
+                {
+                    if (index1 == -1)
+                        d.Add("FullName", index);
+                    else
+                        d.Add("FullName", index1);
+                }
+                if (Exist(allcolumns.ToList(), "company", out index)
+                    || Exist(allcolumns.ToList(), "companyname", out index1)
+                    || Exist(allcolumns.ToList(), "company name", out index2))
+                {
+                    if (index1 == -1 && index2 == -1)
+                        d.Add("Company", index);
+                    else if (index1 == -1)
+                        d.Add("Company", index2);
+                    else
+                        d.Add("Company", index1);
+                }
+                if (Exist(allcolumns.ToList(), "position", out index))
+                    d.Add("Position", index);
+                if (Exist(allcolumns.ToList(), "country", out index))
+                    d.Add("Country", index);
+                if (Exist(allcolumns.ToList(), "email", out index)
+                    || Exist(allcolumns.ToList(), "mail", out index1))
+                {
+                    if (index1 == -1)
+                        d.Add("Email", index);
+                    else
+                        d.Add("Email", index1);
+                }
+                if (Exist(allcolumns.ToList(), "data inserted", out index)
+                    || Exist(allcolumns.ToList(), "datainserted", out index1))
+                {
+                    if (index1 == -1)
+                        d.Add("DataInserted", index);
+                    else
+                        d.Add("DataInserted", index1);
+                }
+                
                 for (int i = 1; i < lines.Length; i++)
                 {
                     Contact contact = new Contact();
@@ -206,12 +256,14 @@ namespace ReadingFromExcel
                 }
                 File.Delete(path);
             }
-            catch
+            catch(Exception ex)
             {
                 File.Delete(path);
+                Console.WriteLine(ex.Message);
             }
             return contactslist;
         }
+
         public static List<Contact> GetContactsFromBytes(byte[] bytes)
         {
             List<Contact> list = new List<Contact>();
@@ -232,9 +284,37 @@ namespace ReadingFromExcel
             }
             return list;
         }
+        public static async void Method()
+        {
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            try
+            {
+                // Read the form data.
+                await Request.Content.ReadAsMultipartAsync(provider);
+
+                // This illustrates how to get the file names.
+                foreach (MultipartFileData file in provider.FileData)
+                {
+                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
+                    Trace.WriteLine("Server file path: " + file.LocalFileName);
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (System.Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+            }
+        } 
         static void Main(string[] args)
         {
-            byte[] bytes = File.ReadAllBytes(@"C:\Users\Dell\Desktop\users.xlsx");
+            byte[] bytes = File.ReadAllBytes(@"C:\Users\Dell\Desktop\contacts.csv");
 
             List<Contact> contactslist = GetContactsFromBytes(bytes);
             if (ReferenceEquals(contactslist, null))
