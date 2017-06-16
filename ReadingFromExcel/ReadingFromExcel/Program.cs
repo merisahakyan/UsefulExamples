@@ -407,7 +407,7 @@ namespace ReadingFromExcel
             else
                 foreach (var value in contactslist)
                 {
-                    Console.WriteLine($"{value.FullName} {value.CompanyName} {value.Position} {value.Country} {value.Email} {value.DateInserted}");
+                    Console.WriteLine($"{value.FullName} {value.CompanyName} {value.Position} {value.Country} {value.Email}");
                 }
         }
     }
